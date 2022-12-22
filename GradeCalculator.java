@@ -23,7 +23,8 @@ public class GradeCalculator {
 
 /**
  * A representation of an assignment, with a name and a score.
- * Operates as the most basic Node and effectively is a leaf for a tree.
+ * Operates as the most basic Node for the system.
+ * Specifically, it acts as a leaf for the tree that the system is built to look like.
  */
 class Assignment {
 
