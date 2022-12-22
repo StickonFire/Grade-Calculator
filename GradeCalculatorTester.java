@@ -1,3 +1,6 @@
+import static org.junit.Assert.*;
+import org.junit.*;
+
 public class GradeCalculatorTester {
     Assignment zeroed = new Assignment(null, 0, 0);
     Assignment Normal = new Assignment("Prim",10,20);
