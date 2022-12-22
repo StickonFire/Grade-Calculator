@@ -1,7 +1,10 @@
+import java.util.LinkedList;
+
 public class GradeCalculator {
 
     static String className = "No name";
     static int percentage = 100;
+    LinkedList<Assignment> assignments = new LinkedList<>();
 
     /**
      * Basic main function of GradeCalculator, and deals with getting the algorithm
@@ -19,6 +22,7 @@ public class GradeCalculator {
 
 
     }
+
 }
 
 /**
@@ -28,7 +32,7 @@ public class GradeCalculator {
  */
 class Assignment {
 
-    String name;
+    String name = "No name";
     int achievedPoints;
     int maxPoints;
 
@@ -36,21 +40,25 @@ class Assignment {
      * Basic constructor for the Assignment class. 
      * Given all three intended values, the constructor simply sets the given values
      * to the corresponding value
-     * @param name - intended value for name
+     * @param name - intended value for name. Give null to leave name as "No name"
      * @param achievedPoints - intended value for achievedPoints
      * @param maxPoints - intended value for maxPoints
      */
     Assignment(String name, int achievedPoints, int maxPoints){
-        this.name = name;
+        if(name != null)
+            this.name = name;
         this.achievedPoints = achievedPoints;
         this.maxPoints = maxPoints;
     }
     
     /**
      * Returns the score percentage of the calling assignment.
+     * If given maxPoints is 0, it simply returns achievedPoints.
      * @return score percentage of the assignment.
      */
     int getScore(){
+        if(maxPoints == 0)
+            return achievedPoints;
         return achievedPoints*GradeCalculator.percentage/maxPoints;
     }
 
