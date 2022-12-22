@@ -58,7 +58,7 @@ class Assignment {
      */
     int getScore(){
         if(maxPoints == 0)
-            return achievedPoints;
+            return achievedPoints*GradeCalculator.percentage;
         return achievedPoints*GradeCalculator.percentage/maxPoints;
     }
 
