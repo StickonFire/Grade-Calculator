@@ -29,7 +29,15 @@ public class GradeCalculator {
      * @return aggregate score of the course.
      */
     int getScore(){
-        return 0;
+        int totalAchievedScore = 0;
+        int totalMaxScore = 0;
+        int[] counter;
+        for (int i = 0 ; i < assignments.size() ; i++) {
+            counter = assignments.get(i).getScore();
+            totalAchievedScore += counter[0];
+            totalMaxScore += counter[1];
+        }
+        return (totalAchievedScore*percentage) / totalMaxScore;
     }
 
 }
