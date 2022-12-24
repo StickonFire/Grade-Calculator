@@ -51,13 +51,22 @@ class Assignment {
         this.maxPoints = maxPoints;
     }
 
-    
+    /**
+     * Returns the score in a form of an array,
+     *  where the numerator is the first element and the denominator is second.
+     * @return array in this order: {Assignment.achievedPoints, Assignment.maxPoints}
+     */
+    int[] getScore(){
+        int[] result = {this.achievedPoints, this.maxPoints};
+        return result;
+    }
     
     /**
      * Returns the score percentage of the calling assignment.
      * If given maxPoints is 0, it simply returns achievedPoints.
      * @return score percentage of the assignment.
      */
+    @Deprecated
     int getPercentage(){
         if(maxPoints == 0)
             return achievedPoints*GradeCalculator.percentage;
