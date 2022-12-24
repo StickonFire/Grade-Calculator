@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class GradeCalculator {
 
@@ -20,7 +21,15 @@ public class GradeCalculator {
             }
         }
 
+        
+    }
 
+    /**
+     * Runs through the list of Assignments to get the total score of the gradeCalculator
+     * @return aggregate score of the course.
+     */
+    int getScore(){
+        return 0;
     }
 
 }
