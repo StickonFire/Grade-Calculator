@@ -50,13 +50,15 @@ class Assignment {
         this.achievedPoints = achievedPoints;
         this.maxPoints = maxPoints;
     }
+
+    
     
     /**
      * Returns the score percentage of the calling assignment.
      * If given maxPoints is 0, it simply returns achievedPoints.
      * @return score percentage of the assignment.
      */
-    int getScore(){
+    int getPercentage(){
         if(maxPoints == 0)
             return achievedPoints*GradeCalculator.percentage;
         return achievedPoints*GradeCalculator.percentage/maxPoints;
