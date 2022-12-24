@@ -26,7 +26,7 @@ public class GradeCalculator {
 
     /**
      * Runs through the list of Assignments to get the total score of the gradeCalculator
-     * @return aggregate score of the course.
+     * @return aggregate score of the course, with 0 as the default.
      */
     int getScore(){
         int totalAchievedScore = 0;
@@ -37,6 +37,8 @@ public class GradeCalculator {
             totalAchievedScore += counter[0];
             totalMaxScore += counter[1];
         }
+        if(totalMaxScore == 0)
+            return totalAchievedScore*percentage;
         return (totalAchievedScore*percentage) / totalMaxScore;
     }
 
