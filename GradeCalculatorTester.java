@@ -21,12 +21,16 @@ public class GradeCalculatorTester {
     int[] score2 = {10,20};
     Assignment MaxPoints0 = new Assignment("",55,0);
     int[] score3 = {55,0};
+    boolean failed = false;
     Assignment NegPoints = new Assignment("NegPoints", -5, 5);
     int[] score4 = {-5,5};
+    Assignment NegMax;
 
     /**
      * A basic test for the Assignment class. 
      * Tests the following items:
+     *  constructor
+     *   - check if maxPoints is negative.
      *  getScore()
      *   - check if maxPoints is 0
      *   - check a normal
@@ -38,6 +42,15 @@ public class GradeCalculatorTester {
      */
     @Test
     public void testAssignment(){
+        try{
+            NegMax = new Assignment("NegPoints", -5, 5);
+        }
+        catch(IllegalArgumentException e){
+            failed = true;
+        }
+        assertTrue("This test checks if a negative maxPoint in the constructor fails.",failed);
+        failed = false;
+
         assertArrayEquals("This test checks a normal score (achievedPoints is 0)", Normal.getScore(), score2);
         assertArrayEquals("This test checks when maxPoints is 0", MaxPoints0.getScore(), score3);
         assertArrayEquals("This test checks when everything is 0", zeroed.getScore(), score1);
@@ -52,12 +65,9 @@ public class GradeCalculatorTester {
      * Test for the GradeCalculator.getScore() method)
      * It checks the following cases:
      *  - No assignments
-     *  - MaxPoints adds up to 0.
      *  - Just Normal scores
      *  - Just all 0 or null scores
      *  - all assignments have 0 maxPoints
-     *  - MaxPoints are negative
-     *  - MaxPoints is negative and achievedPoints is positive.
      */
     @Test
     public void testMainGetScore(){

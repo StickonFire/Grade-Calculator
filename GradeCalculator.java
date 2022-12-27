@@ -48,6 +48,7 @@ public class GradeCalculator {
  * A representation of an assignment, with a name and a score.
  * Operates as the most basic Node for the system.
  * Specifically, it acts as a leaf for the tree that the system is built to look like.
+ * Note: maxPoints cannot be negative.
  */
 class Assignment {
 
@@ -58,7 +59,8 @@ class Assignment {
     /**
      * Basic constructor for the Assignment class. 
      * Given all three intended values, the constructor simply sets the given values
-     * to the corresponding value
+     * to the corresponding value.
+     * @throws IllegalArgumentException if maxPoints is negative.
      * @param name - intended value for name. Give null to leave name as "No name"
      * @param achievedPoints - intended value for achievedPoints
      * @param maxPoints - intended value for maxPoints
@@ -66,6 +68,8 @@ class Assignment {
     Assignment(String name, int achievedPoints, int maxPoints){
         if(name != null)
             this.name = name;
+        if(maxPoints < 0)
+            throw new IllegalArgumentException();
         this.achievedPoints = achievedPoints;
         this.maxPoints = maxPoints;
     }
