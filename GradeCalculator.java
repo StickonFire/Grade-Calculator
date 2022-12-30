@@ -25,10 +25,22 @@ public class GradeCalculator {
     }
 
     /**
+     * Runs through the list of Assignments to get the total score of gradeCalculator,
+     *  represented as a fraction, where the first element is the numerator 
+     *  and the second the denominator.
+     * @return an array where the first element is the sum of achievedPoints and second is sum of maxPoints.
+     */
+    int[] getScore(){
+        return null;
+    }
+
+
+    /**
      * Runs through the list of Assignments to get the total score of the gradeCalculator
      * @return aggregate score of the course, with 0 as the default. Given as a percentage.
      */
-    int getScore(){
+    @Deprecated
+    int getPercentage(){
         int totalAchievedScore = 0;
         int totalMaxScore = 0;
         int[] counter;
