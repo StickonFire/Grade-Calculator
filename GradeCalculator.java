@@ -26,7 +26,7 @@ public class GradeCalculator {
 
     /**
      * Runs through the list of Assignments to get the total score of the gradeCalculator
-     * @return aggregate score of the course, with 0 as the default.
+     * @return aggregate score of the course, with 0 as the default. Given as a percentage.
      */
     int getScore(){
         int totalAchievedScore = 0;

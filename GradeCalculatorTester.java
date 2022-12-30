@@ -43,7 +43,7 @@ public class GradeCalculatorTester {
     @Test
     public void testAssignment(){
         try{
-            NegMax = new Assignment("NegPoints", -5, 5);
+            NegMax = new Assignment("NegPoints", 5, -5);
         }
         catch(IllegalArgumentException e){
             failed = true;
