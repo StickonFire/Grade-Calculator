@@ -31,7 +31,14 @@ public class GradeCalculator {
      * @return an array where the first element is the sum of achievedPoints and second is sum of maxPoints.
      */
     int[] getScore(){
-        return null;
+        int[] result = {0,0};
+        int holder[];
+        for (int i = 0 ; i < assignments.size() ; i++){
+            holder = assignments.get(i).getScore();
+            result[0] += holder[0];
+            result[1] += holder[1];
+        }
+        return result;
     }
 
 
