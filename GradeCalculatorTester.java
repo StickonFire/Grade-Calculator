@@ -7,13 +7,6 @@ import java.util.LinkedList;
 public class GradeCalculatorTester {
     GradeCalculator test = new GradeCalculator();
 
-    //Note: if trying again, just add the below Assignments to the end of the assignment list to be created in tests.
-    Assignment[] oneNormList = {new Assignment("A",10,20)};
-    Assignment[] emptyList = new Assignment[0];
-    Assignment[] zeroedList = {new Assignment(null,0,0)};
-    Assignment[] MaxPoints0List = {new Assignment("B",15,0)};
-    Assignment[] NegPointsList = {new Assignment("C",-5,4)};
-
 
     Assignment zeroed = new Assignment(null, 0, 0);
     int[] score1 = {0,0};
@@ -74,51 +67,129 @@ public class GradeCalculatorTester {
      */
     @Test
     public void testMainGetPercentage(){
-        
-        LinkedList<Assignment> empty = new LinkedList<>();
-        test.assignments = empty;
-        assertEquals("Checks if an empty Assignment list returns 0 as required.",0,test.getPercentage());
 
         Assignment oneNormalA = new Assignment("A",5,10);
         LinkedList<Assignment> oneNormal = new LinkedList<>();
         oneNormal.add(oneNormalA);
-        test.assignments = oneNormal;
-        assertEquals("Checks if a single normal element works as intended.",50,test.getPercentage());
-
+    
         Assignment zeroedA = new Assignment(null,0,0);
-        LinkedList<Assignment> zeroed = new LinkedList<>();
-        zeroed.add(zeroedA);
-        test.assignments = zeroed;
-        assertEquals("Checks if a zeroed assignment returns 0 as required.",0,test.getPercentage());
-
+        LinkedList<Assignment> zeroedList = new LinkedList<>();
+        zeroedList.add(zeroedA);
+    
         Assignment negOneA =  new Assignment("B",-1,1);
         LinkedList<Assignment> negOne = new LinkedList<>();
         negOne.add(negOneA);
-        test.assignments = negOne;
-
-        assertEquals("Checks if a negative achievedPoints returns correctly", -100,test.getPercentage());
-
+    
         Assignment negAnd0MaxA = new Assignment("C",-1,0);
         LinkedList<Assignment> negAnd0Max = new LinkedList<>();
         negAnd0Max.add(negAnd0MaxA);
-        test.assignments = negAnd0Max;
-
-        assertEquals("Check if a negative achievedPoints and 0'd maxPoints returns correctly", -100, test.getPercentage());
-
+    
         Assignment max0A = new Assignment("B", 5, 0);
         LinkedList<Assignment> max0 = new LinkedList<>();
         max0.add(max0A);
-        test.assignments = max0;
-        assertEquals("check if 0'd maxPoints returns achievedPoints*percentage",500,test.getPercentage());
-
+    
         LinkedList<Assignment> allTogether = new LinkedList<>();
         allTogether.add(oneNormalA);
         allTogether.add(zeroedA);
         allTogether.add(negOneA);
         allTogether.add(negAnd0MaxA);
         allTogether.add(max0A);
+        
+        LinkedList<Assignment> empty = new LinkedList<>();
+        test.assignments = empty;
+        assertEquals("Checks if an empty Assignment list returns 0 as required.",0,test.getPercentage());
+
+        test.assignments = oneNormal;
+        assertEquals("Checks if a single normal element works as intended.",50,test.getPercentage());
+
+        test.assignments = zeroedList;
+        assertEquals("Checks if a zeroed assignment returns 0 as required.",0,test.getPercentage());
+
+        test.assignments = negOne;
+        assertEquals("Checks if a negative achievedPoints returns correctly", -100,test.getPercentage());
+
+        test.assignments = negAnd0Max;
+        assertEquals("Check if a negative achievedPoints and 0'd maxPoints returns correctly", -100, test.getPercentage());
+
+        test.assignments = max0;
+        assertEquals("check if 0'd maxPoints returns achievedPoints*percentage",500,test.getPercentage());
+
         test.assignments = allTogether;
 
         assertEquals("Check if all assignments together won't make the incorrect result.",72,test.getPercentage());
+    }
+
+    /**
+     * Tests the GradeCalculator.getScore method)
+     * It checks the following cases:
+     *  - No assignments
+     *  - Just Normal scores
+     *  - Just all 0 or null scores
+     *  - Totally negative scores.
+     *  - all assignments have 0 maxPoints
+     *  - assignment has 0 maxPoints and negative achievedPoints
+     *  - a combination of all possible assignment types.
+     */
+    @Test
+    public void testMainGetScore(){
+
+        LinkedList<Assignment> empty = new LinkedList<>();
+
+        Assignment oneNormalA = new Assignment("A",5,10);
+        LinkedList<Assignment> oneNormal = new LinkedList<>();
+        oneNormal.add(oneNormalA);
+    
+        Assignment zeroedA = new Assignment(null,0,0);
+        LinkedList<Assignment> zeroedList = new LinkedList<>();
+        zeroedList.add(zeroedA);
+    
+        Assignment negOneA =  new Assignment("B",-1,1);
+        LinkedList<Assignment> negOne = new LinkedList<>();
+        negOne.add(negOneA);
+    
+        Assignment negAnd0MaxA = new Assignment("C",-1,0);
+        LinkedList<Assignment> negAnd0Max = new LinkedList<>();
+        negAnd0Max.add(negAnd0MaxA);
+    
+        Assignment max0A = new Assignment("B", 5, 0);
+        LinkedList<Assignment> max0 = new LinkedList<>();
+        max0.add(max0A);
+    
+        LinkedList<Assignment> allTogether = new LinkedList<>();
+        allTogether.add(oneNormalA);
+        allTogether.add(zeroedA);
+        allTogether.add(negOneA);
+        allTogether.add(negAnd0MaxA);
+        allTogether.add(max0A);
+
+        int[] exp1 = {0,0};
+        int[] exp2 = {5,10};
+        int[] exp3 = {0,0};
+        int[] exp4 = {-1,1};
+        int[] exp5 = {-1,0};
+        int[] exp6 = {5,0};
+        int[] exp7 = {8,11};
+
+        test.assignments = empty;
+        assertArrayEquals("Checks if an empty Assignment list returns 0 as required.",exp1,test.getScore());
+
+        test.assignments = oneNormal;
+        assertArrayEquals("Checks if an empty Assignment list returns 0 as required.",exp2,test.getScore());
+
+        test.assignments = zeroedList;
+        assertArrayEquals("Checks if an empty Assignment list returns 0 as required.",exp3,test.getScore());
+
+        test.assignments = negOne;
+        assertArrayEquals("Checks if an empty Assignment list returns 0 as required.",exp4,test.getScore());
+
+        test.assignments = negAnd0Max;
+        assertArrayEquals("Checks if an empty Assignment list returns 0 as required.",exp5,test.getScore());
+        
+        test.assignments = max0;
+        assertArrayEquals("Checks if an empty Assignment list returns 0 as required.",exp6,test.getScore());
+
+        test.assignments = allTogether;
+        assertArrayEquals("Checks if an empty Assignment list returns 0 as required.",exp7,test.getScore());
+        
     }
 }
