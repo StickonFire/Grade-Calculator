@@ -64,12 +64,39 @@ public class GradeCalculator {
 }
 
 /**
+ * Basic interface with one method: getScore.
+ * Set up to allow the two classes Category and Assignment
+ * to act as nodes in a tree, where category is inner nodes and assignment is a leaf.
+ */
+interface Node {
+    int[] getScore();
+}
+
+/**
+ * A representation of a category, which can hold multiple Assignments.
+ */
+class Category implements Node {
+    int weight;
+    int otherWeight = 100;
+    LinkedList<Assignment> assignments = new LinkedList<>();
+
+    /**
+     * Runs through all the assignments and adds their achievedScore and maxScores together separately.
+     * Then multiplies both with weight to get the weighted score.
+     * @return an array with the first element as the weighted achievedScore, and second as the weighted maxScore.
+     */
+    public int[] getScore(){
+        return null;
+    }
+}
+
+/**
  * A representation of an assignment, with a name and a score.
  * Operates as the most basic Node for the system.
  * Specifically, it acts as a leaf for the tree that the system is built to look like.
  * Note: maxPoints cannot be negative.
  */
-class Assignment {
+class Assignment implements Node {
 
     String name = "No name";
     int achievedPoints;
@@ -98,7 +125,7 @@ class Assignment {
      *  where the numerator is the first element and the denominator is second.
      * @return array in this order: {Assignment.achievedPoints, Assignment.maxPoints}
      */
-    int[] getScore(){
+    public int[] getScore(){
         int[] result = {this.achievedPoints, this.maxPoints};
         return result;
     }
