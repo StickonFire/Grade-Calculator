@@ -81,6 +81,24 @@ class Category implements Node {
     LinkedList<Assignment> assignments = new LinkedList<>();
 
     /**
+     * Basic constructor. Only receives the weight, and the others are set to normal.
+     * @param weight - intended value for the weight field.
+     */
+    Category(int weight){
+        this.weight = weight;
+    }
+
+    /**
+     * Category constructor. Receives and sets weight and assignments to the corresponding argument.
+     * @param weight - intended value for the weight field.
+     * @param assignments - intended value for the assignment field.
+     */
+    Category(int weight, LinkedList<Assignment> assignments){
+        this.weight = weight;
+        this.assignments = assignments;
+    }
+
+    /**
      * Runs through all the assignments and adds their achievedScore and maxScores together separately.
      * Then multiplies both with weight to get the weighted score.
      * @return an array with the first element as the weighted achievedScore, and second as the weighted maxScore.
