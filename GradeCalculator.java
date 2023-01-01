@@ -86,7 +86,14 @@ class Category implements Node {
      * @return an array with the first element as the weighted achievedScore, and second as the weighted maxScore.
      */
     public int[] getScore(){
-        return null;
+        int[] result = {0,0};
+        int holder[];
+        for (int i = 0 ; i < assignments.size() ; i++){
+            holder = assignments.get(i).getScore();
+            result[0] += holder[0];
+            result[1] += holder[1];
+        }
+        return result;
     }
 }
 
