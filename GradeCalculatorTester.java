@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 
 public class GradeCalculatorTester {
-    GradeCalculator test = new GradeCalculator();
+    Category test = new Category(0);
 
 
     Assignment zeroed = new Assignment(null, 0, 0);
@@ -55,7 +55,7 @@ public class GradeCalculatorTester {
     }
 
     /**
-     * Test for the GradeCalculator.getScore() method)
+     * Tests the Category.getScore method)
      * It checks the following cases:
      *  - No assignments
      *  - Just Normal scores
@@ -66,72 +66,7 @@ public class GradeCalculatorTester {
      *  - a combination of all possible assignment types.
      */
     @Test
-    public void testMainGetPercentage(){
-
-        Assignment oneNormalA = new Assignment("A",5,10);
-        LinkedList<Assignment> oneNormal = new LinkedList<>();
-        oneNormal.add(oneNormalA);
-    
-        Assignment zeroedA = new Assignment(null,0,0);
-        LinkedList<Assignment> zeroedList = new LinkedList<>();
-        zeroedList.add(zeroedA);
-    
-        Assignment negOneA =  new Assignment("B",-1,1);
-        LinkedList<Assignment> negOne = new LinkedList<>();
-        negOne.add(negOneA);
-    
-        Assignment negAnd0MaxA = new Assignment("C",-1,0);
-        LinkedList<Assignment> negAnd0Max = new LinkedList<>();
-        negAnd0Max.add(negAnd0MaxA);
-    
-        Assignment max0A = new Assignment("B", 5, 0);
-        LinkedList<Assignment> max0 = new LinkedList<>();
-        max0.add(max0A);
-    
-        LinkedList<Assignment> allTogether = new LinkedList<>();
-        allTogether.add(oneNormalA);
-        allTogether.add(zeroedA);
-        allTogether.add(negOneA);
-        allTogether.add(negAnd0MaxA);
-        allTogether.add(max0A);
-        
-        LinkedList<Assignment> empty = new LinkedList<>();
-        test.assignments = empty;
-        assertEquals("Checks if an empty Assignment list returns 0 as required.",0,test.getPercentage());
-
-        test.assignments = oneNormal;
-        assertEquals("Checks if a single normal element works as intended.",50,test.getPercentage());
-
-        test.assignments = zeroedList;
-        assertEquals("Checks if a zeroed assignment returns 0 as required.",0,test.getPercentage());
-
-        test.assignments = negOne;
-        assertEquals("Checks if a negative achievedPoints returns correctly", -100,test.getPercentage());
-
-        test.assignments = negAnd0Max;
-        assertEquals("Check if a negative achievedPoints and 0'd maxPoints returns correctly", -100, test.getPercentage());
-
-        test.assignments = max0;
-        assertEquals("check if 0'd maxPoints returns achievedPoints*percentage",500,test.getPercentage());
-
-        test.assignments = allTogether;
-
-        assertEquals("Check if all assignments together won't make the incorrect result.",72,test.getPercentage());
-    }
-
-    /**
-     * Tests the GradeCalculator.getScore method)
-     * It checks the following cases:
-     *  - No assignments
-     *  - Just Normal scores
-     *  - Just all 0 or null scores
-     *  - Totally negative scores.
-     *  - all assignments have 0 maxPoints
-     *  - assignment has 0 maxPoints and negative achievedPoints
-     *  - a combination of all possible assignment types.
-     */
-    @Test
-    public void testMainGetScore(){
+    public void testCategoryGetScore(){
 
         LinkedList<Assignment> empty = new LinkedList<>();
 
