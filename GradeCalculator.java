@@ -121,6 +121,21 @@ class Category implements Node {
         }
         return result;
     }
+
+
+    /**
+     * Adds an assignment into the assignments field, with a conditions
+     * The assignment given cannot be null.
+     * @param assignment - intended assignment to add to the assignments field.
+     * @return 1 if the assignment isn't null, and 0 if it is.
+     */
+    boolean addAssignment(Assignment assignment){
+        if(assignment == null)
+            return false;
+
+        assignments.add(assignment);
+        return true;
+    }
 }
 
 /**
