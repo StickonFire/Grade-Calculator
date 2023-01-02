@@ -124,10 +124,10 @@ class Category implements Node {
 
 
     /**
-     * Adds an assignment into the assignments field, with a conditions
+     * Adds an assignment into the assignments field, with a condition.
      * The assignment given cannot be null.
      * @param assignment - intended assignment to add to the assignments field.
-     * @return 1 if the assignment isn't null, and 0 if it is.
+     * @return true if the assignment isn't null, and false if it is.
      */
     boolean addAssignment(Assignment assignment){
         if(assignment == null)
@@ -135,6 +135,25 @@ class Category implements Node {
 
         assignments.add(assignment);
         return true;
+    }
+
+    /**
+     * Adds the given assignments to the assignments field, with the condition
+     *  that the assignments cannot be null.
+     * In the case that assigment is found null, the assignment list ends immediately.
+     * @param assignmentList - assignments to add to the assignments field.
+     * @return the distance from the end of the list and the last element added.
+     */
+    int addAssignments(LinkedList<Assignment> assignmentList){
+        if(assignmentList == null)
+            return 0;
+
+        for(int i = 0 ; i < assignmentList.size() ; i++){
+            if( !(this.addAssignment(assignmentList.get(i))) ){
+                return assignmentList.size()-i-1;
+            }
+        }
+        return 0;
     }
 }
 
