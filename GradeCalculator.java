@@ -95,6 +95,7 @@ class Category implements Node {
 
     /**
      * Category constructor. Receives and sets name, weight and assignments to the corresponding argument.
+     * @throws NullPointerException if assignments is null
      * @param name - intended name of the category. Set to null for default name.
      * @param weight - intended value for the weight field.
      * @param assignments - intended value for the assignment field.
@@ -103,6 +104,9 @@ class Category implements Node {
         if(name != null)
             this.name = name;
         this.weight = weight;
+
+        if(assignments == null)
+            throw new NullPointerException("The assignments list given is null!");
         this.assignments = assignments;
     }
 
