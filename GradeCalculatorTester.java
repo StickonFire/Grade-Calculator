@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 
 public class GradeCalculatorTester {
-    Category test = new Category(0);
+    Category test = new Category(null,0);
 
 
     Assignment zeroed = new Assignment(null, 0, 0);

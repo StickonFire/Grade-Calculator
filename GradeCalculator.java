@@ -30,6 +30,7 @@ public class GradeCalculator {
      *  and the second the denominator.
      * @return an array where the first element is the sum of achievedPoints and second is sum of maxPoints.
      */
+    @Deprecated
     int[] getScore(){
         int[] result = {0,0};
         int holder[];
@@ -76,24 +77,31 @@ interface Node {
  * A representation of a category, which can hold multiple Assignments.
  */
 class Category implements Node {
+    String name = "No name";
     int weight;
     int otherWeight = 100;
     LinkedList<Assignment> assignments = new LinkedList<>();
 
     /**
-     * Basic constructor. Only receives the weight, and the others are set to normal.
+     * Basic constructor. Only receives the weight and name, and the others are set to normal.
+     * @name - intended name for the name field. Set to null for default name.
      * @param weight - intended value for the weight field.
      */
-    Category(int weight){
+    Category(String name, int weight){
+        if(name != null)
+            this.name = name;
         this.weight = weight;
     }
 
     /**
-     * Category constructor. Receives and sets weight and assignments to the corresponding argument.
+     * Category constructor. Receives and sets name, weight and assignments to the corresponding argument.
+     * @param name - intended name of the category. Set to null for default name.
      * @param weight - intended value for the weight field.
      * @param assignments - intended value for the assignment field.
      */
-    Category(int weight, LinkedList<Assignment> assignments){
+    Category(String name, int weight, LinkedList<Assignment> assignments){
+        if(name != null)
+            this.name = name;
         this.weight = weight;
         this.assignments = assignments;
     }
