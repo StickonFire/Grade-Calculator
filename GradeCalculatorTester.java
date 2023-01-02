@@ -127,4 +127,53 @@ public class GradeCalculatorTester {
         assertArrayEquals("Checks if an empty Assignment list returns 0 as required.",exp7,test.getScore());
         
     }
+
+    /**
+     * Tests the constructors for category. It checks the following instances:
+     *  - normal small constructor
+     *  - normal wide constructor
+     *  - normal wide constructor, null assignments
+     *  - normal wide constructor, empty assignment list
+     *  - small constructor, null name
+     *  - wide constructor, null name
+     *  - negative weight (should be treated as normal)
+     */
+    @Test
+    public void testCategoryConstructors(){
+        Category cat1 = new Category("A",30);
+
+        assertEquals("This checks if a normal 2 argument constructor has the right name", cat1.name, "A");
+        assertEquals("This checks if a normal 2 argument constructor has the right weight", cat1.weight, 30);
+        assertEquals("This checks if a normal 2 argument constructor has the right assignments", cat1.assignments, new LinkedList<Assignment>());
+
+        Category newcat = new Category(null, 75);
+        
+        assertEquals("This checks if a normal 2 argument constructor with null name has the right name", newcat.name, "No name");
+        assertEquals("This checks if a normal 2 argument constructor with null name has the right weight", newcat.weight, 75);
+        assertEquals("This checks if a normal 2 argument constructor with null name has the right assignments", newcat.assignments, new LinkedList<Assignment>());
+
+        boolean failed = false;
+        try{
+            Category cat2 = new Category("B",50,null);
+        }
+        catch (NullPointerException e){
+            failed = true;
+        }
+
+        assertTrue("This checks if a null assignments argument causes an exception", failed);
+
+        Category cat3 = new Category("A",45, new LinkedList<Assignment>());
+
+        assertEquals("This checks if a normal 3 argument constructor with an empty list has the right name", cat3.name, "A");
+        assertEquals("This checks if a normal 3 argument constructor with an empty list has the right weight", cat3.weight, 45);
+        assertEquals("This checks if a normal 3 argument constructor with an empty list has the right assignments", cat3.assignments, new LinkedList<Assignment>());
+
+        LinkedList<Assignment> ex4 = new LinkedList<>();
+        ex4.add(new Assignment(null, 95, 100));
+        Category cat4 = new Category("None",46, ex4);
+
+        assertEquals("This checks if a normal 3 argument constructor has the right name", cat4.name, "None");
+        assertEquals("This checks if a normal 3 argument constructor has the right weight", cat4.weight, 46);
+        assertEquals("This checks if a 3 argument constructor has the right assignments.", cat4.assignments.get(0), new Assignment(null, 95, 100));
+    }
 }
