@@ -174,6 +174,10 @@ public class GradeCalculatorTester {
 
         assertEquals("This checks if a normal 3 argument constructor has the right name", cat4.name, "None");
         assertEquals("This checks if a normal 3 argument constructor has the right weight", cat4.weight, 46);
-        assertEquals("This checks if a 3 argument constructor has the right assignments.", cat4.assignments.get(0), new Assignment(null, 95, 100));
+        Assignment e = new Assignment(null, 95, 100);
+        
+        assertEquals("This checks if the given assignment has the correct name", e.name,ex4.get(0).name);
+        assertEquals("This checks if the given assignment has the correct achievedPoints",e.achievedPoints,ex4.get(0).achievedPoints);
+        assertEquals("This checks if the given assignment has the correct maxPoints",e.maxPoints,ex4.get(0).maxPoints);
     }
 }
